@@ -23,7 +23,7 @@ export function GraphBrain({
   semantics?: Record<string, string>;
   topologyLinks: Array<{source: string, target: string, weight: number}>;
 }) {
-  const fgRef = useRef<any>();
+  const fgRef = useRef<any>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 500 });
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
@@ -172,9 +172,9 @@ export function GraphBrain({
               const srcActive = activeNeuronIds.includes(link.source.id || link.source);
               const tgtActive = activeNeuronIds.includes(link.target.id || link.target);
               
-              const baseWidth = Math.max(1, (link.weight || 0.1) * 3); 
-              if (srcActive && tgtActive && isReinforcing) return baseWidth + 5; 
-              if (srcActive && tgtActive) return baseWidth + 1.5;
+              const baseWidth = Math.max(0.5, (link.weight || 0.1) * 1.5); 
+              if (srcActive && tgtActive && isReinforcing) return baseWidth + 2; 
+              if (srcActive && tgtActive) return baseWidth + 0.8;
               return baseWidth;
             }}
             linkDirectionalParticles={(link: any) => {
