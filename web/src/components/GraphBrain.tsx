@@ -75,9 +75,9 @@ export function GraphBrain({
   // Adjust D3 physical forces for a very clean, structured network (less bouncy, well-spread)
   useEffect(() => {
     if (mounted && fgRef.current) {
-      fgRef.current.d3Force('charge').strength(isFullscreen ? -800 : -400); // spread even more if fullscreen
-      fgRef.current.d3Force('link').distance(isFullscreen ? 150 : 100);     // stretch links
-      fgRef.current.d3Force('center').strength(0.01); 
+      fgRef.current.d3Force('charge').strength(isFullscreen ? -2000 : -1200); // Massive repulsion to separate nodes wide apart
+      fgRef.current.d3Force('link').distance(isFullscreen ? 300 : 180);       // Stretch the resting link length significantly
+      fgRef.current.d3Force('center').strength(0.05); // Slight centralization to keep it in frame
     }
   }, [mounted, graphData, isFullscreen]);
 
